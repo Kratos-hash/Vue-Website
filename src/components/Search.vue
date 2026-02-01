@@ -1,15 +1,15 @@
 <script setup>
     import {ref} from 'vue';
-    import {useRoute} from 'vue-router';
+    import {useRouter} from 'vue-router';
 
-    const route = useRoute();
+    const router = useRouter();
     const query = ref('');
 
     const handleSearch = () => {
       if (!query.value.trim()) return;
 
-      route.push({
-        path: '/jobs',
+      router.push({
+        path: '/jobs?query',
         query: { q: query.value.trim() }
       });
 
@@ -20,8 +20,8 @@
 <template>
     <form @submit.prevent="handleSearch" class="ml-auto">
         <input
-          type="text"
           v-model="query"
+          type="text"
           placeholder="Search jobs..."
           class="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
